@@ -1,4 +1,9 @@
 <?php
+include_once "Cliente.php";
+include_once "Prestamo.php";
+include_once "Cuota.php";
+include_once "Financiera.php";
+
 
 class Financiera{
 
@@ -51,7 +56,7 @@ class Financiera{
         for($i = 0; $i < count($this->getColecPrestamos()); $i++){
             if(count($this->getColecPrestamos()[$i]->getColecCuotas()) == 0){
 
-                if(($this->getColecPrestamos()[$i]->getMonto() / $this->getColecPrestamos()[$i]->getCantidadCuotas()) <= ($this->getColecPrestamos()[$i]->getImporteNeto() * 0.4)){
+                if(($this->getColecPrestamos()[$i]->getMonto() / $this->getColecPrestamos()[$i]->getCantidadCuotas()) <= ($this->getColecPrestamos()[$i]->getMonto() * 0.4)){
                     $this->getColecPrestamos()[$i]->otorgarPrestamo();
                 }
             }
@@ -63,11 +68,13 @@ class Financiera{
 
         $encontrado = false;
         $i = 0;;
+        $referencia = null;
         while(!$encontrado && $i < count($this->getColecPrestamos())){
 
             if($this->getColecPrestamos()[$i]->getIdentificacion() == $idPrestamo){
                 $encontrado = true;
-                $referencia =$this->getColecPrestamos()[$i]->informarCuotaPagar();
+                $referencia =$this->getColecPrestamos()[$i]->darSiguienteCuotaPagar();
+                //esto en pedco lo hice mal y me di cuenta cuando lo entregue :(
             }
             $i++;
             
@@ -86,7 +93,7 @@ class Financiera{
         $cadena .= "Préstamos otorgados:\n";
     
         foreach ($this->getColecPrestamos() as $prestamo) {
-            $cadena .= $prestamo . "\n";
+            $cadena .= $prestamo->__toString() . "\n";
         }
     
         return $cadena;

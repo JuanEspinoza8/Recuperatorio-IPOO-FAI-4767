@@ -1,9 +1,9 @@
 <?php
 
-include_once 'Cliente.php';
-include_once 'Prestamo.php';
-include_once 'Cuota.php';
-include_once 'Financiera.php';
+include_once "Cliente.php";
+include_once "Prestamo.php";
+include_once "Cuota.php";
+include_once "Financiera.php";
 
 $persona1 = new Cliente("Pepe", "florez", "12345678", "Bs As 12", "dir@mail.com", "299444567", 40000);
 $persona2 = new Cliente("Luis", "Suares", "12345679", "Bs As 123", "dire@mail.com", "2994455", 4000);

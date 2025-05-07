@@ -1,4 +1,8 @@
 <?php
+include_once "Cliente.php";
+include_once "Prestamo.php";
+include_once "Cuota.php";
+include_once "Financiera.php";
 
 class Cliente{
 
